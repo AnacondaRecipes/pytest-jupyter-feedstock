@@ -92,7 +92,7 @@ outputs:
 
 about:
   home: https://pypi.org/project/pytest-jupyter
-  description: A pytest plugin for testing Jupyter libraries and extensions.
+  description: A pytest plugin used for testing Jupyter libraries and extensions.
   summary: |
     Pytest plugin that provides a set of fixtures and markers for testing Jupyter notebooks and 
     Jupyter kernel sessions using the Pytest framework. This package allows developers to run 
