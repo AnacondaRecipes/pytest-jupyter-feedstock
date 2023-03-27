@@ -15,8 +15,6 @@ build:
 requirements:
   host:
     - python
-  run:
-    - python
 
 outputs:
   - name: pytest-jupyter
@@ -35,7 +33,7 @@ outputs:
         - pytest
       run_constrained:
         - jupyter_server >=1.21
-        - jupyter_client >=7.4
+        - jupyter_client >=7.4.0
         - ipykernel >=6.14
         - nbformat >=5.3
     test:
@@ -58,7 +56,7 @@ outputs:
       run:
         - {{ pin_subpackage("pytest-jupyter", max_pin="x.x.x") }}
         - ipykernel >=6.14
-        - jupyter_client >=7.4
+        - jupyter_client >=7.4.0
         - python
     test:
       imports:
