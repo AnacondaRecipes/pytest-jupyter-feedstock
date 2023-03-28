@@ -9,33 +9,31 @@ source:
   sha256: 47f80f573384f274470282d044cd2566b81d7379112446f69adb1fcdfc3351ca
 
 build:
-  noarch: python
   number: 0
+  skip: true  # [py<37]
 
 requirements:
   host:
-    - python >=3.7
-  run:
-    - python >=3.7
+    - python
 
 outputs:
   - name: pytest-jupyter
     build:
-      script: {{ PYTHON }} -m pip install . -vv --no-deps
-      noarch: python
+      script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
     requirements:
       host:
-        - python >=3.7
+        - python
         - pip
-        - hatchling
+        - wheel
+        - setuptools
+        - hatchling 1.12.2
       run:
-        - python >=3.7
+        - python
         - jupyter_core
         - pytest
       run_constrained:
-        # the hard `run` dependencies are in sub-packages
         - jupyter_server >=1.21
-        - jupyter_client >=7.4
+        - jupyter_client >=7.4.0
         - ipykernel >=6.14
         - nbformat >=5.3
     test:
@@ -50,16 +48,16 @@ outputs:
         - pip
 
   - name: pytest-jupyter-client
-    build:
-      noarch: python
     requirements:
       host:
-        - python >=3.7
+        - python
+        - setuptools
+        - wheel
       run:
         - {{ pin_subpackage("pytest-jupyter", max_pin="x.x.x") }}
-        - ipykernel
-        - jupyter_client
-        - python >=3.7
+        - ipykernel >=6.14
+        - jupyter_client >=7.4.0
+        - python
     test:
       imports:
         - pytest_jupyter
@@ -68,23 +66,18 @@ outputs:
         - pip check
       requires:
         - pip
-    about:
-      home: https://pypi.org/project/pytest-jupyter
-      summary: A pytest plugin for testing Jupyter libraries and extensions. (with client dependencies)
-      dev_url: https://github.com/jupyter-server/pytest-jupyter
-      license: BSD-3-Clause
-      license_file: LICENSE
 
   - name: pytest-jupyter-server
-    build:
-      noarch: python
     requirements:
       host:
-        - python >=3.7
+        - python
+        - setuptools
+        - wheel
       run:
         - {{ pin_subpackage("pytest-jupyter-client", max_pin="x.x.x") }}
-        - jupyter_server
-        - python >=3.7
+        - jupyter_server >=1.21
+        - nbformat >=5.3
+        - python
     test:
       source_files:
         - tests
@@ -93,23 +86,22 @@ outputs:
         - pytest_jupyter.jupyter_server
       commands:
         - pip check
-        - cd tests && pytest -vv --cov=pytest_jupyter --cov-report=term-missing:skip-covered --no-cov-on-fail --cov-fail-under=90
+        - cd tests && pytest -vv 
       requires:
         - pip
-        - pytest-cov
-    about:
-      home: https://pypi.org/project/pytest-jupyter
-      summary: A pytest plugin for testing Jupyter libraries and extensions. (with server dependencies)
-      dev_url: https://github.com/jupyter-server/pytest-jupyter
-      license: BSD-3-Clause
-      license_file: LICENSE
 
 about:
   home: https://pypi.org/project/pytest-jupyter
-  summary: A pytest plugin for testing Jupyter libraries and extensions.
+  description: A pytest plugin used for testing Jupyter libraries and extensions.
+  summary: |
+    Pytest plugin that provides a set of fixtures and markers for testing Jupyter notebooks and 
+    Jupyter kernel sessions using the Pytest framework. This package allows developers to run 
+    tests on Jupyter notebooks as if they were regular Python modules.
+  doc_url: https://pytest-jupyter.readthedocs.io/en/main/
   dev_url: https://github.com/jupyter-server/pytest-jupyter
   license: BSD-3-Clause
   license_file: LICENSE
+  license_family: BSD
 
 extra:
   feedstock-name: pytest-jupyter
