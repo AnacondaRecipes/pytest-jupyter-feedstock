@@ -9,7 +9,7 @@ source:
   sha256: 47f80f573384f274470282d044cd2566b81d7379112446f69adb1fcdfc3351ca
 
 build:
-  number: 0
+  number: 1
   skip: true  # [py<37]
 
 requirements:
@@ -26,7 +26,7 @@ outputs:
         - pip
         - wheel
         - setuptools
-        - hatchling 1.12.2
+        - hatchling 1.18
       run:
         - python
         - jupyter_core
