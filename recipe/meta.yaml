@@ -26,7 +26,7 @@ outputs:
         - pip
         - wheel
         - setuptools
-        - hatchling 1.18
+        - hatchling
       run:
         - python
         - jupyter_core
@@ -49,10 +49,6 @@ outputs:
 
   - name: pytest-jupyter-client
     requirements:
-      host:
-        - python
-        - setuptools
-        - wheel
       run:
         - {{ pin_subpackage("pytest-jupyter", max_pin="x.x.x") }}
         - ipykernel >=6.14
@@ -69,10 +65,6 @@ outputs:
 
   - name: pytest-jupyter-server
     requirements:
-      host:
-        - python
-        - setuptools
-        - wheel
       run:
         - {{ pin_subpackage("pytest-jupyter-client", max_pin="x.x.x") }}
         - jupyter_server >=1.21
