@@ -18,14 +18,12 @@ requirements:
 
 outputs:
   - name: pytest-jupyter
-    build:
-      script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+    script: build-pkg.bat # [win]
+    script: build-pkg.sh  # [unix]
     requirements:
       host:
         - python
         - pip
-        - wheel
-        - setuptools
         - hatchling
       run:
         - python
