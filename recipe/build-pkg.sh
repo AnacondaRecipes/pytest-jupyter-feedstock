@@ -1,3 +1,3 @@
 #!/bin/bash
 
-$PYTHON -m pip install . --no-deps --ignore-installed --no-cache-dir -vv
+$PYTHON -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vv
