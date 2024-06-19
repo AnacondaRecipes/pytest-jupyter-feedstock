@@ -65,6 +65,8 @@ outputs:
         - pip
 
   - name: pytest-jupyter-server
+    build:
+      skip: true # [s390x] no nodejs for jupyter_server
     requirements:
       host:
         - python
