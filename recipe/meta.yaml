@@ -1,15 +1,15 @@
-{% set version = "0.10.1" %}
+{% set version = "0.11.0" %}
 
 package:
   name: pytest-jupyter-split
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/p/pytest-jupyter/pytest_jupyter-{{ version }}.tar.gz
-  sha256: 00df54eef9e201dd542d5471b8980def15d34b917b30587d14d7c824fc4d9e84
+  url: https://pypi.org/packages/source/p/pytest-jupyter/pytest_jupyter-{{ version }}.tar.gz
+  sha256: a4e08ced44cfea1bce080090c626b8dc4f9d617fa5aafcd84b71405f503e9899
 
 build:
-  number: 1
+  number: 0
   skip: true  # [py<38]
 
 requirements:
@@ -18,7 +18,7 @@ requirements:
 
 outputs:
   - name: pytest-jupyter
-    script: build-pkg.bat # [win]
+    script: build-pkg.bat  # [win]
     script: build-pkg.sh  # [unix]
     requirements:
       host:
@@ -44,7 +44,6 @@ outputs:
         - pip check
       requires:
         - pip
-
   - name: pytest-jupyter-client
     requirements:
       host:
@@ -63,10 +62,9 @@ outputs:
         - pip check
       requires:
         - pip
-
   - name: pytest-jupyter-server
     build:
-      skip: true # [s390x] no nodejs for jupyter_server
+      skip: true  # [s390x] no nodejs for jupyter_server
     requirements:
       host:
         - python
@@ -85,7 +83,7 @@ outputs:
         - pytest_jupyter.jupyter_server
       commands:
         - pip check
-        - cd tests && pytest -vv 
+        - cd tests && pytest -vv
       requires:
         - pip
 
@@ -93,8 +91,8 @@ about:
   home: https://pypi.org/project/pytest-jupyter
   description: A pytest plugin used for testing Jupyter libraries and extensions.
   summary: |
-    Pytest plugin that provides a set of fixtures and markers for testing Jupyter notebooks and 
-    Jupyter kernel sessions using the Pytest framework. This package allows developers to run 
+    Pytest plugin that provides a set of fixtures and markers for testing Jupyter notebooks and
+    Jupyter kernel sessions using the Pytest framework. This package allows developers to run
     tests on Jupyter notebooks as if they were regular Python modules.
   doc_url: https://pytest-jupyter.readthedocs.io/en/main/
   dev_url: https://github.com/jupyter-server/pytest-jupyter
