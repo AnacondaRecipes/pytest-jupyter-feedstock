@@ -19,7 +19,7 @@ requirements:
 outputs:
   - name: pytest-jupyter
     script: build-pkg.bat  # [win]
-    script: build-pkg.sh  # [unix]
+    script: build-pkg.sh   # [unix]
     requirements:
       host:
         - python
@@ -42,7 +42,9 @@ outputs:
         - pytest_jupyter.jupyter_core
       commands:
         - pip check
+        - python -c "from importlib.metadata import version; assert(version('pytest-jupyter')=='{{ version }}')"
       requires:
+        - python
         - pip
   - name: pytest-jupyter-client
     requirements:
@@ -83,7 +85,7 @@ outputs:
         - pytest_jupyter.jupyter_server
       commands:
         - pip check
-        - cd tests && pytest -vv
+        - pytest -ra -vv tests
       requires:
         - pip
 
@@ -94,7 +96,7 @@ about:
     Pytest plugin that provides a set of fixtures and markers for testing Jupyter notebooks and
     Jupyter kernel sessions using the Pytest framework. This package allows developers to run
     tests on Jupyter notebooks as if they were regular Python modules.
-  doc_url: https://pytest-jupyter.readthedocs.io/en/main/
+  doc_url: https://pytest-jupyter.readthedocs.io/en/main
   dev_url: https://github.com/jupyter-server/pytest-jupyter
   license: BSD-3-Clause
   license_file: LICENSE
