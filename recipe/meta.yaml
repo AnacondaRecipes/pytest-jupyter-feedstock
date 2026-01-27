@@ -75,17 +75,18 @@ outputs:
         - nbformat >=5.3
         - ipykernel >=6.14
         - python
-    test:
-      source_files:
-        - tests
-      imports:
-        - pytest_jupyter
-        - pytest_jupyter.jupyter_server
-      commands:
-        - pip check
-        - pytest -ra -vv tests
-      requires:
-        - pip
+    # TODO:Enable tests when jupyter_server is available for py314 on the main channel.
+    # test:
+    #   source_files:
+    #     - tests
+    #   imports:
+    #     - pytest_jupyter
+    #     - pytest_jupyter.jupyter_server
+    #   commands:
+    #     - pip check
+    #     - pytest -ra -vv tests
+    #   requires:
+    #     - pip
 
 about:
   home: https://pypi.org/project/pytest-jupyter
