@@ -46,6 +46,7 @@ outputs:
       requires:
         - python
         - pip
+
   - name: pytest-jupyter-client
     requirements:
       host:
@@ -64,6 +65,7 @@ outputs:
         - pip check
       requires:
         - pip
+
   - name: pytest-jupyter-server
     requirements:
       host:
