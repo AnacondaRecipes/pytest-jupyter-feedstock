@@ -1,5 +1,5 @@
 build_env_vars:
-  ANACONDA_ROCKET_ENABLE_PY313 : yes
+  ANACONDA_ROCKET_ENABLE_PY314 : yes
 
 # disable tests due to circular dependency with jupyter_client and jupyter_server
 build_parameters:
