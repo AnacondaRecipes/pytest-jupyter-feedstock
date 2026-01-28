@@ -34,18 +34,18 @@ outputs:
         - jupyter_client >=7.4.0
         - ipykernel >=6.14
         - nbformat >=5.3
-    # test:
-    #   source_files:
-    #     - tests
-    #   imports:
-    #     - pytest_jupyter
-    #     - pytest_jupyter.jupyter_core
-    #   commands:
-    #     - pip check
-    #     - python -c "from importlib.metadata import version; assert(version('pytest-jupyter')=='{{ version }}')"
-    #   requires:
-    #     - python
-    #     - pip
+    test:
+      source_files:
+        - tests
+      imports:
+        - pytest_jupyter
+        - pytest_jupyter.jupyter_core
+      commands:
+        - pip check
+        - python -c "from importlib.metadata import version; assert(version('pytest-jupyter')=='{{ version }}')"
+      requires:
+        - python
+        - pip
   - name: pytest-jupyter-client
     requirements:
       host:
@@ -56,14 +56,14 @@ outputs:
         - jupyter_client >=7.4.0
         - nbformat >=5.3
         - python
-    # test:
-    #   imports:
-    #     - pytest_jupyter
-    #     - pytest_jupyter.jupyter_client
-    #   commands:
-    #     - pip check
-    #   requires:
-    #     - pip
+    test:
+      imports:
+        - pytest_jupyter
+        - pytest_jupyter.jupyter_client
+      commands:
+        - pip check
+      requires:
+        - pip
   - name: pytest-jupyter-server
     requirements:
       host:
@@ -75,18 +75,17 @@ outputs:
         - nbformat >=5.3
         - ipykernel >=6.14
         - python
-    # TODO:Enable tests when jupyter_server is available for py314 on the main channel.
-    # test:
-    #   source_files:
-    #     - tests
-    #   imports:
-    #     - pytest_jupyter
-    #     - pytest_jupyter.jupyter_server
-    #   commands:
-    #     - pip check
-    #     - pytest -ra -vv tests
-    #   requires:
-    #     - pip
+    test:
+      source_files:
+        - tests
+      imports:
+        - pytest_jupyter
+        - pytest_jupyter.jupyter_server
+      commands:
+        - pip check
+        - pytest -ra -vv tests
+      requires:
+        - pip
 
 about:
   home: https://pypi.org/project/pytest-jupyter
