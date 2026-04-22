@@ -2,3 +2,7 @@ anaconda_config_version: 1
 upstream_sources:
   - pypi:
       identifier: pytest-jupyter
+    packages:
+      - pytest-jupyter
+      - pytest-jupyter-client
+      - pytest-jupyter-server
